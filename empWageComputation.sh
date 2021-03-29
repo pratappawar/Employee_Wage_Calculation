@@ -2,22 +2,19 @@
 		WagePerHr=20
 		isFullTime=1
 		isPartTime=2
-		FullTimeHr=8
-		PartTimeHr=4
-		Salary=0
-		
-		if [ $((RANDOM%3)) -eq $isFullTime ]
-			then
-				  salary=$(($FullTimeHr*$WagePerHr))
+		empCheck=$((RANDOM%3))
+		case $empCheck in
+				$isFullTime )
+				  				  empHr=8								
+                           ;;
 
-		elif [ $((RANDOM%3)) -eq $isPartTime ]
-			then
+				$isPartTime )
+								  empHr=4
+									;;
+			           	*)
+					        	  empHr=0
+					            ;;				
+		 esac
+		 Salary=$(( WagePerHr*empHr ))
+       echo "Daily Employee Salary = "$Salary
 
-				salary=$(($PartTimeHr*$WagePerHr))
-		else
-				salary=0
-		fi
-
-		echo "Daily Employee Salary= $salary"
-		
-		
