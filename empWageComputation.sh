@@ -1,21 +1,29 @@
 #! /bin/bash 
 	WagePerHr=20
-	isFullTime=1
-	isPartTime=2
-	DayInMonth=20
-	empCheck=$((RANDOM%3))
-   case $empCheck in
-	$isFullTime )
-		empHr=8								
-			;;
-	$isPartTime )
-		empHr=4
-			;;
-		*)
-		  empHr=0
-		   ;;				
-	esac 
-	Salary=$(( WagePerHr*empHr ))
-	SalaryPerMonth=$(($Salary*$DayInMonth))
-	echo "Monthly Employee Salary = " $SalaryPerMonth
+	MaxHr=100
+	maxDays=20
+	Present=1
+	Absent=2
+	totalWorkingHr=0
+	totalWorkingDays=0
+	while(( $totalWorkingHr<$MaxHr && $totalWorkingDays<$maxDays ))
+	do
+		((totalWorkingDays++))
+		empCheck=$((RANDOM%3))
+		case $empcheck in
+				 0)
+              empHr=0
+                ;;
 
+			  $Present )
+				 empHr=8
+					;;
+			  $Absent)
+				  empHr=4
+					;;	
+		esac
+	totalWorkingHr=(($totalWorkingHr + $empHr ))
+	done
+	totalSalary=$(($totalWorkingHr * $WagePerHr))
+	echo "total salary = $totalSalary"
+				
