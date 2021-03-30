@@ -1,29 +1,24 @@
 #! /bin/bash 
-	WagePerHr=20
-	MaxHr=100
-	maxDays=20
-	Present=1
-	Absent=2
-	totalWorkingHr=0
-	totalWorkingDays=0
-	while(( $totalWorkingHr<$MaxHr && $totalWorkingDays<$maxDays ))
-	do
-		((totalWorkingDays++))
-		empCheck=$((RANDOM%3))
-		case $empcheck in
-				 0)
-              empHr=0
-                ;;
-
-			  $Present )
-				 empHr=8
-					;;
-			  $Absent)
-				  empHr=4
-					;;	
-		esac
-	totalWorkingHr=(($totalWorkingHr + $empHr ))
-	done
-	totalSalary=$(($totalWorkingHr * $WagePerHr))
-	echo "total salary = $totalSalary"
-				
+IS_FULL_TIME=1;
+IS_PART_TIME=2;
+EMP_RATE_PER_HOUR=20;
+NUM_OF_WORKING_DAYS=20;
+MAX_HOURS_IN_MONTH=40;
+totalEmpHours=0;
+totalWorkingDays=0;
+function getWorkingHours(){
+	empCheck=$((RANDOM%3))
+	case $empCheck in 
+		$IS_FULL_TIME )
+			empHrs=8
+			;;
+		$IS_PART_TIME )
+			empHrs=4
+			;;
+		* )
+			empHrs=0
+			;;
+	esac
+	echo $empHrs
+}
+getWorkingHours
